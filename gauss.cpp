@@ -1,25 +1,24 @@
 #include<iostream>
-#include<stdlib.h>
-
-
+#define   m   10
 using namespace std;
 
 int main()
 {
-	 float a[10][10], x[10], ratio;
-	 int i,j,y,n;
+	 float a[m][m], x[m], ratio;
+	 int i,j,k,n;
 
-	 // 1. Reading number of unknowns 
+	 
+	 // 1. Input number of unknowns 
 	 cout<<"Enter number of unknowns: ";
 	 cin>>n;
 
-	 // 2. Entering matrix 
+	 // 2. input Augmented Matrix 
 	 cout<<"Enter Coefficients of Augmented Matrix: "<< endl;
 	 for(i=1;i<=n;i++)
 	 {
 		  for(j=1;j<=n+1;j++)
 		  {
-			   cout<<"a["<< i<<"]["<< j<<"]= "<<endl;
+			   cout<<"a["<< i<<"]["<< j<<"]= ";
 			   cin>>a[i][j];
 		  }
 	 }
@@ -28,21 +27,24 @@ int main()
 	 {
 		  if(a[i][i] == 0.0)
 		  {
-			   cout<<" THERE IS A PIVOT EQUALS ZERO!";
-			   exit(0);
+			   for (int k=0; k<=n; k++)
+				{
+					double temp = a[i][k];
+					a[i][k] = a[j][k];
+					a[j][k] = temp;
+				}
 		  }
 		  for(j=i+1;j<=n;j++)
 		  {
 			   ratio = a[j][i]/a[i][i];
 
-			   for(y=0;y<n+1;y++)
+			   for(k=1;k<=n+1;k++)
 			   {
-			  		a[j][y] = a[j][y] - ratio*a[i][y];
+			  		a[j][k] = a[j][k] - ratio*a[i][k];
 			   }
 		  }
 	 }
-	 //Back Substitution
-     //n is number of unknowns
+	 // Back Substitution Method 
 	 x[n] = a[n][n+1]/a[n][n];
 
 	 for(i=n-1;i>=1;i--)
@@ -56,8 +58,8 @@ int main()
 	 }
 
 	 // Displaying Solution 
-	 cout<<"Solution: "<< endl;
-	 for(i=0;i<n;i++)
+	 cout<< endl<<"Solution: "<< endl;
+	 for(i=1;i<=n;i++)
 	 {
 	  	cout<<"x["<< i<<"] = "<< x[i]<< endl;
 	 }
