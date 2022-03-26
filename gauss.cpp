@@ -15,16 +15,16 @@ int main()
 
 	 // 2. Entering matrix 
 	 cout<<"Enter Coefficients of Augmented Matrix: "<< endl;
-	 for(i=0;i<n;i++)
+	 for(i=1;i<=n;i++)
 	 {
-		  for(j=0;j<n+1;j++)
+		  for(j=1;j<=n+1;j++)
 		  {
 			   cout<<"a["<< i<<"]["<< j<<"]= "<<endl;
 			   cin>>a[i][j];
 		  }
 	 }
 	// Applying Gauss Elimination 
-	 for(i=0;i<n-1;i++)
+	 for(i=1;i<=n-1;i++)
 	 {
 		  if(a[i][i] == 0.0)
 		  {
